@@ -4,9 +4,8 @@
 	<script id = "shader-vs" type="x-shader/x-vertex">
 	attribute vec4 coords;
 	attribute float pointSize;
-	uniform mat4 transformMatrix;
 	void main(void) {
-		gl_Position = transformMatrix * coords;
+		gl_Position = coords;
 		gl_PointSize = pointSize;
 	}
 	</script>
