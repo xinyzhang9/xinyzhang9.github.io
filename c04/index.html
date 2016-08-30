@@ -1,0 +1,149 @@
+<html>
+<head>
+	<title>fragmentshader</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<style type="text/css">
+	body{
+		text-align: center;
+	}
+	</style>
+</head>
+<body>
+	<div><h2>Enternal Heart</h2></div>
+	<div>
+		<ul class = 'list-unstyled list-inline'>
+			<li><b>Z</b> : Zoom In</li>
+			<li><b>X</b> : Zoom Out</li>
+			<li><b>&larr;</b> : Left</li>
+			<li><b>&rarr;</b> : Right</li>
+			<li><b>&uarr;</b> : Up</li>
+			<li><b>&darr;</b> : Down</li>
+		</ul>
+	<hr />
+	<canvas id = 'c' width = '900' height = '900'></canvas>
+	
+	</div>
+	<script type="text/javascript" src = '../webgl-utils.js'></script>
+	<script type="x-shader" id = 'vshader'>
+		attribute vec2 aVertexPosition;
+		void main(){
+			gl_Position = vec4(aVertexPosition,0,1);
+		}
+	</script>
+	<script type="x-shader" id = 'fshader'>
+	#ifdef GL_FRAGMENT_PRECISION_HIGH
+		precision highp float;
+	#else
+		precision mediump float;
+	#endif
+		precision mediump int;
+		uniform vec2 uCanvasSize;
+		uniform vec2 uOffset;
+		uniform float uScale;
+		//calculate RGB
+		vec4 calc(vec2 texCoord) {
+			float x = 0.0;
+			float y = 0.0;
+			float v = 10000.0;
+			float j = 10000.0;
+			for (int iteration = 0; iteration < 100; ++iteration) {
+				float xtemp = x*x-y*y+texCoord.x;
+				y = 2.0*x*y+texCoord.y;
+				x = xtemp;
+				v = min(v, abs(x*x+y*y));
+				j = min(j, abs(x*y));
+				if (x*x+y*y >= 8.0) {
+					float d = (float(iteration) - (log(log(sqrt(x*x+y*y))) / log(2.0))) / 50.0;
+					v = (1.0 - v) / 2.0;
+					j = (1.0 - j) / 2.0;
+					return vec4(d+j,d,d+v,1);
+				}
+			}
+			return vec4(0,0,0,1);
+		}
+		void main() {
+			vec2 texCoord = (gl_FragCoord.xy / uCanvasSize.xy) * 2.0 - vec2(1.0,1.0);
+			texCoord = texCoord * uScale + uOffset;
+			gl_FragColor = calc(texCoord);
+		}
+	</script>
+	<script type="text/javascript">
+	var c,gl,offset,scale,iv,actions,keyMappings,
+		vertexPosAttrib,vs,fs,
+		program;
+
+		init();
+		setProgram();
+		draw();
+
+		function init(){
+			c = document.getElementById('c');
+			gl = c.getContext('experimental-webgl');
+			offset = [-0.5, 0];
+			scale = 1.35;
+			iv = null;
+			actions = {};
+			keyMappings = { 
+							'37' : 'panleft', 
+							'38' : 'panup', 
+							'39' : 'panright', 
+							'40' : 'pandown',
+							'90' : 'zoomin', 
+							'88' : 'zoomout' 
+						};
+			for (var k in keyMappings) {
+				actions[keyMappings[k]] = false;
+			}
+			vertexPosBuffer = screenQuad();
+			vs = document.getElementById('vshader').textContent;
+			fs = document.getElementById('fshader').textContent;
+		}
+
+		function setProgram(){
+			program = createProgram(vs,fs);
+			gl.useProgram(program);
+			program.vertexPosAttrib = gl.getAttribLocation(program, 'aVertexPosition');
+			program.canvasSizeUniform = gl.getUniformLocation(program, 'uCanvasSize');
+			program.offsetUniform = gl.getUniformLocation(program, 'uOffset');
+			program.scaleUniform = gl.getUniformLocation(program, 'uScale');
+			gl.enableVertexAttribArray(program.vertexPosAttrib);
+			gl.vertexAttribPointer(program.vertexPosAttrib, vertexPosBuffer.itemSize, gl.FLOAT, false, 0, 0);
+		}
+		
+		
+		window.onkeydown = function(e) {
+			var kc = e.keyCode.toString();
+			if (keyMappings.hasOwnProperty(kc)) {
+				actions[keyMappings[kc]] = true;
+				if (!iv) {
+					iv = setInterval('draw();', 16);
+				}
+			}
+		};
+		window.onkeyup = function(e) {
+			var kc = e.keyCode.toString();
+			if (keyMappings.hasOwnProperty(kc)) {
+				actions[keyMappings[kc]] = false;
+			}
+			for (var j in keyMappings) {
+				if (actions[keyMappings[j]]) {
+					return;
+				}
+			}
+			clearInterval(iv);
+			iv = null;
+		};
+		
+		function draw() {
+			offset[0] += -(actions.panleft ? scale / 25 : 0) + (actions.panright ? scale / 25 : 0);
+			offset[1] += -(actions.pandown ? scale / 25 : 0) + (actions.panup ? scale / 25 : 0);
+			scale = scale * (actions.zoomin ? 0.975 : 1.0) / (actions.zoomout ? 0.975 : 1.0);
+			gl.uniform2f(program.canvasSizeUniform, c.width, c.height);
+			gl.uniform2f(program.offsetUniform, offset[0], offset[1]);
+			gl.uniform1f(program.scaleUniform, scale);
+			gl.drawArrays(gl.TRIANGLE_STRIP, 0, vertexPosBuffer.numItems);
+		}
+	</script>
+
+</body>
+</html>

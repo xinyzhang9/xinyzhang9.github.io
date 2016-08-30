@@ -1,0 +1,36 @@
+<html>
+<head>
+	<title>perspective-projection</title>
+	<style type="text/css">
+		body{
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<canvas id = 'c' width = '900' height = '900'></canvas>
+	<script type="text/javascript" src = '../webgl-utils.js'></script>
+	<script type="text/javascript" src = '../mesh.js'></script>
+	<script type="text/javascript" src = '../vector-math.js'></script>
+	<script type="text/javascript">
+		var c = document.getElementById('c');
+		var gl = c.getContext('webgl');
+		gl.enable(gl.DEPTH_TEST);
+		gl.clearColor(0,0,0,1);
+		var mesh = new Mesh();
+		var z = 0;
+		var rot = new Matrix4x3();
+		function draw() {
+			requestAnimationFrame(draw, c);
+			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+			modelMatrix().makeRotate(z,1,0,0);
+			modelMatrix().multiply(rot.makeRotate(z,0,1,0));
+			modelMatrix().multiply(rot.makeRotate(z,0,0,1));
+			modelMatrix().d[14] = -4;
+			mesh.draw();
+			z += 0.01;
+		}
+		mesh.load('meshes/yellow-cube2.json',draw);
+	</script>
+</body>
+</html>
