@@ -1,6 +1,6 @@
 var gl;
 var shaderProgram;
-var vertexCount = 20000;
+var vertexCount = 50000;
 var mouseX = 0;
 var mouseY = 0;
 
