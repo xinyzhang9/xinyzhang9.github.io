@@ -1,0 +1,36 @@
+<html>
+<head>
+	<title>texture</title>
+	<link rel="stylesheet" type="text/css" href="../webgl.css">
+	<script type="text/javascript" src = '../sylvester.js'></script>
+	<script type="text/javascript" src = '../glUtils.js'></script>
+	<script type="text/javascript" src = 'main.js'></script>
+	<script type="x-shader/x-fragment" id = 'shader-fs'>
+		varying highp vec2 vTextureCoord;
+		uniform sampler2D uSampler;
+		void main(void){
+			gl_FragColor = texture2D(uSampler,vec2(vTextureCoord.s, vTextureCoord.t));
+		}
+	</script>
+	<script type="x-shader/x-vertex" id = 'shader-vs'>
+		attribute vec3 aVertexPosition;
+		attribute vec2 aTextureCoord;
+
+		uniform mat4 uMVMatrix;
+		uniform mat4 uPMatrix;
+
+		varying highp vec2 vTextureCoord;
+
+		void main(void){
+			gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition,1.0);
+			vTextureCoord = aTextureCoord;
+		}
+	</script>
+</head>
+<body onload = 'start()'>
+	<canvas id = 'c' width = '640' height = '480'>
+		Your browser doesn't support the <code>&lt;canvas&gt;</code> element.
+	</canvas>
+
+</body>
+</html>
