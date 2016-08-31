@@ -27,8 +27,6 @@ var videoElement;
 //
 function start() {
   canvas = document.getElementById("glcanvas");
-  canvas.width = document.body.clientWidth;
-  canvas.height = document.body.clientHeight;
   videoElement = document.getElementById("video");
 
   initWebGL(canvas);      // Initialize the GL context
@@ -334,7 +332,7 @@ function drawScene() {
   var width = document.body.clientWidth;
   var height = document.body.clientHeight;
 
-  perspectiveMatrix = makePerspective(45, width/height, 0.1, 100.0);
+  perspectiveMatrix = makePerspective(45, 640.0/480.0, 0.1, 100.0);
 
   // Set the drawing position to the "identity" point, which is
   // the center of the scene.
