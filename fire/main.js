@@ -45,7 +45,7 @@ var options = {
   sparkDeathSpeedSlider: {min: 0.002, max: 0.05},
 };
 
-textureList = ["gradient.png","circle.png","skull.png","thicker_gradient.png","explosion.png","flame.png","smilie.png","heart.png"];
+textureList = ["gradient.png","circle.png","skull.png","thicker_gradient.png","explosion.png","flame.png","smilie.png","heart.png","gengar.png"];
 images = [];
 textures = [];
 currentTextureIndex = 2;
