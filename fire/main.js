@@ -48,7 +48,7 @@ var options = {
 textureList = ["skull.png","circle.png","gradient.png","thicker_gradient.png","explosion.png","flame.png","smilie.png","heart.png"];
 images = [];
 textures = [];
-currentTextureIndex = 2;
+currentTextureIndex = 0;
 
 function loadTexture(textureName,index) {
   textures[index] = gl.createTexture();
