@@ -44,10 +44,12 @@ var options = {
   sparkDeathSpeed: 0.0085,
   sparkDeathSpeedSlider: {min: 0.002, max: 0.05},
 };
+
 textureList = ["skull.png","circle.png","gradient.png","thicker_gradient.png","explosion.png","flame.png","smilie.png","heart.png"];
 images = [];
 textures = [];
 currentTextureIndex = 2;
+
 function loadTexture(textureName,index) {
   textures[index] = gl.createTexture();
   images[index] = new Image();
@@ -56,6 +58,7 @@ function loadTexture(textureName,index) {
   images[index].src = textureName;
   console.log("starting to load " + textureName);
 }
+
 function handleTextureLoaded(image,index,textureName) {
   console.log("loaded texture " + textureName);
   gl.bindTexture(gl.TEXTURE_2D, textures[index]);
@@ -67,9 +70,9 @@ function handleTextureLoaded(image,index,textureName) {
   // load the next texture
   if (index < textureList.length-1)
     loadTexture("textures/" + textureList[index+1],index+1);
-  //texturesLoadedCount += 1;
   
 }
+
 function loadAllTextures() {
   var fireTextureCombobox = document.getElementById("fireTexture");
   fireTextureCombobox.onchange = function() {
@@ -86,6 +89,7 @@ function loadAllTextures() {
 }
 fireParticles = [];
 sparkParticles = [];
+
 function createFireParticle(emitCenter) {
   var size = randomSpread(options.fireSize,options.fireSize*(options.fireSizeVariance/100.0));
   var speed = randomSpread(options.fireSpeed,options.fireSpeed*options.fireSpeedVariance/100.0);
@@ -106,6 +110,7 @@ function createFireParticle(emitCenter) {
 };
   fireParticles.push(particle);
 }
+
 function createSparkParticle(emitCenter) {
   var size = randomSpread(options.sparkSize,options.sparkSize*(options.sparkSizeVariance/100.0));
   var origin = clone2DVec(emitCenter);
@@ -194,20 +199,47 @@ function main() {
   cameraLocation = gl.getUniformLocation(program, "cam_position");
   textureSamplerLocation = gl.getUniformLocation(program, "u_sampler")
   // setup UI
-  setupSlider("fireEmitRate","fireEmitRateVal",options.fireEmitRate,options.fireEmitRateSlider,1,function(newValue) {options.fireEmitRate = +newValue;});
-  setupSlider("fireSize","fireSizeVal",options.fireSize,options.fireSizeSlider,1,function(newValue) {options.fireSize = +newValue;});
-  setupSlider("fireSizeVariance","fireSizeVarianceVal",options.fireSizeVariance,options.fireSizeVarianceSlider,0.01,function(newValue) {options.fireSizeVariance = +newValue;});
-  setupSlider("fireEmitAngleVariance","fireEmitAngleVarianceVal",options.fireEmitAngleVariance,options.fireEmitAngleVarianceSlider,0.0001,function(newValue) {options.fireEmitAngleVariance = +newValue;});
-  setupSlider("fireSpeed","fireSpeedVal",options.fireSpeed,options.fireSpeedSlider,0.01,function(newValue) {options.fireSpeed = +newValue;});
-  setupSlider("fireSpeedVariance","fireSpeedVarianceVal",options.fireSpeedVariance,options.fireSpeedVarianceSlider,0.01,function(newValue) {options.fireSpeedVariance = +newValue;});
-  setupSlider("fireDeathSpeed","fireDeathSpeedVal",options.fireDeathSpeed,options.fireDeathSpeedSlider,0.000001,function(newValue) {options.fireDeathSpeed = +newValue;});
-  setupSlider("fireTriangleness","fireTrianglenessVal",options.fireTriangleness,options.fireTrianglenessSlider,0.000001,function(newValue) {options.fireTriangleness = +newValue;});
+  setupSlider("fireEmitRate","fireEmitRateVal",options.fireEmitRate,options.fireEmitRateSlider,1,function(newValue) {
+    options.fireEmitRate = +newValue;
+  });
+
+  setupSlider("fireSize","fireSizeVal",options.fireSize,options.fireSizeSlider,1,function(newValue) {
+    options.fireSize = +newValue;
+  });
+
+  setupSlider("fireSizeVariance","fireSizeVarianceVal",options.fireSizeVariance,options.fireSizeVarianceSlider,0.01,function(newValue) {
+    options.fireSizeVariance = +newValue;
+  });
+
+  setupSlider("fireEmitAngleVariance","fireEmitAngleVarianceVal",options.fireEmitAngleVariance,options.fireEmitAngleVarianceSlider,0.0001,function(newValue) {
+    options.fireEmitAngleVariance = +newValue;
+  });
+
+  setupSlider("fireSpeed","fireSpeedVal",options.fireSpeed,options.fireSpeedSlider,0.01,function(newValue) {
+    options.fireSpeed = +newValue;
+  });
+
+  setupSlider("fireSpeedVariance","fireSpeedVarianceVal",options.fireSpeedVariance,options.fireSpeedVarianceSlider,0.01,function(newValue) {
+    options.fireSpeedVariance = +newValue;
+  });
+
+  setupSlider("fireDeathSpeed","fireDeathSpeedVal",options.fireDeathSpeed,options.fireDeathSpeedSlider,0.000001,function(newValue) {
+    options.fireDeathSpeed = +newValue;
+  });
+
+  setupSlider("fireTriangleness","fireTrianglenessVal",options.fireTriangleness,options.fireTrianglenessSlider,0.000001,function(newValue) {
+    options.fireTriangleness = +newValue;
+  });
+
   setupSlider("fireTextureHue","fireTextureHueVal",options.fireTextureHue,options.fireTextureHueSlider,0.01,function(newValue) {
       options.fireTextureHue = +newValue;
       var hue = convertHue(options.fireTextureHue);
       document.getElementById("fireTextureHueVal").style.backgroundColor = rgbToHex(HSVtoRGB(hue,1.0,1.0));
   });
-  setupSlider("fireTextureHueVariance","fireTextureHueVarianceVal",options.fireTextureHueVariance,options.fireTextureHueVarianceSlider,0.01,function(newValue) {options.fireTextureHueVariance = +newValue;});
+  setupSlider("fireTextureHueVariance","fireTextureHueVarianceVal",options.fireTextureHueVariance,options.fireTextureHueVarianceSlider,0.01,function(newValue) {
+    options.fireTextureHueVariance = +newValue;
+  });
+
   document.getElementById("fireTextureColorize").onchange = function() {
     options.fireTextureColorize = this.checked;
   };
@@ -220,8 +252,15 @@ function main() {
   document.getElementById("omnidirectionalWind").onchange = function() {
     options.omnidirectionalWind = this.checked;
   };
-  setupSlider("windStrength","windStrengthVal",options.windStrength,options.windStrengthSlider,0.01,function(newValue) {options.windStrength = +newValue;});
-  setupSlider("windTurbulance","windTurbulanceVal",options.windTurbulance,options.windTurbulanceSlider,0.00001,function(newValue) {options.windTurbulance = +newValue;});
+
+  setupSlider("windStrength","windStrengthVal",options.windStrength,options.windStrengthSlider,0.01,function(newValue) {
+    options.windStrength = +newValue;
+  });
+
+  setupSlider("windTurbulance","windTurbulanceVal",options.windTurbulance,options.windTurbulanceSlider,0.00001,function(newValue) {
+    options.windTurbulance = +newValue;
+  });
+
   document.onkeydown = handleKeyDown;
   document.onkeyup = handleKeyUp;
   canvas.onmousedown = handleMouseDown;
@@ -242,7 +281,7 @@ function animloop() {
   logic();
   render();
 }
-// the timing function's only job is to calculate the framerate
+// calculate the framerate
 frameTime = 18;
 lastTime = time();
 lastFPSDivUpdate = time();
@@ -308,10 +347,12 @@ function logic() {
   fireParticles = deleteMarked(fireParticles);
   // update spark particles
   sparkParticleDiscrepancy += options.sparkEmitRate*(timeDifference)/1000.0;
+
   while (sparkParticleDiscrepancy > 0) {
     createSparkParticle({x:canvas.width/2,y:canvas.height/2+200});
     sparkParticleDiscrepancy -= 1.0;
   }
+
   for (var i = 0; i < sparkParticles.length; i++) {
     var x = sparkParticles[i].pos.x;
     var y = sparkParticles[i].pos.y;
@@ -325,6 +366,7 @@ function logic() {
   document.getElementById("numParticles").innerHTML = "number of particles: " + (fireParticles.length + sparkParticles.length);
   lastParticleTime = currentParticleTime;
 }
+
 function render() {
   gl.clear(gl.COLOR_BUFFER_BIT);
     // set the resolution
@@ -345,6 +387,7 @@ function concat_inplace(index,arr1,arr2) {
   }
   return index;
 }
+
 function drawRects(rects,textureIndex) {
   var index = 0;
   var colorIndex = 0;
