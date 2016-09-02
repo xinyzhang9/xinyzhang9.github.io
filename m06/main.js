@@ -18,8 +18,8 @@ var mvMatrix,
 
 function start(){
 	canvas = document.getElementById('c');
-	canvas.width = document.body.clientWidth;
-	canvas.height = document.body.clientHeight;
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
 	initWebGL();
 
 	if (gl){
