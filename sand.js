@@ -73,9 +73,9 @@ function draw(){
 		var dx = vertices[i] - mouseX,
 			dy = vertices[i + 1] - mouseY,
 			dist = Math.sqrt(dx * dx + dy * dy);
-		if(dist < 0.2){
-			vertices[i] = mouseX + dx / dist * 0.2;
-			vertices[ i + 1] = mouseY + dy / dist * 0.2;
+		if(dist < 0.1){
+			vertices[i] = mouseX + dx / dist * 0.1;
+			vertices[ i + 1] = mouseY + dy / dist * 0.1;
 		}
 		vertices[i] += Math.random() * 0.01 - 0.005;
 		vertices[i + 1] += Math.random() * 0.01 - 0.005;
