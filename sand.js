@@ -1,6 +1,6 @@
 var gl;
 var shaderProgram;
-var vertexCount = 100000;
+var vertexCount = window.innerWidth * window.innerHeight/2;
 var mouseX = 0;
 var mouseY = 0;
 
@@ -21,11 +21,12 @@ draw();
 
 function initGL(){
 	var canvas = document.getElementById('canvas');
-	canvas.width = document.body.clientWidth;
-	canvas.height = document.body.clientHeight;
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
 	gl = canvas.getContext('webgl');
 	gl.viewport(0,0,canvas.width,canvas.height);
 	gl.clearColor(1,1,1,1);
+
 }
 
 function createShaders(){

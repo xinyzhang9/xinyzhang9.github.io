@@ -3,6 +3,18 @@
 <head>
 	<title>webGL</title>
 	<style type="text/css">
+		#notice {
+			position: absolute;
+			color: blue;
+			left: 0px;
+			right: 0px;
+			bottom: 0px;
+			padding: 5px;
+			text-align: center;
+			font-family: Helvetica;
+			font-size: 16px;
+			z-index:  5;
+		}
 	</style>
 	<script id = "shader-vs" type="x-shader/x-vertex">
 	attribute vec4 coords;
@@ -23,6 +35,12 @@
 <body>
 	<canvas id = "canvas" width = "800" height = "800"></canvas>
 	<script type="text/javascript" src = "sand.js"></script>
+	<div id = "notice"></div>
+	<script>
+(function() {
+   document.getElementById('notice').innerHTML = 'number of sands: ' + window.innerWidth * window.innerHeight / 2;
 
+})();
+</script>
 </body>
 </html>
