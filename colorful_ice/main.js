@@ -106,7 +106,7 @@ function draw(){
 				}
 		}
 	}
-	gl.lineWidth(1);
+	gl.lineWidth(2);
 	gl.bufferData(gl.ARRAY_BUFFER,vertices,gl.DYNAMIC_DRAW);
 	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 	gl.drawArrays(gl.LINES,0,numLines);

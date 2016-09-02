@@ -64,7 +64,7 @@ function createVertices(){
 
 	//get uniform
 	var color = gl.getUniformLocation(shaderProgram,'color');
-	gl.uniform4f(color,1,0.65,0,1);
+	gl.uniform4f(color,1,0.65,0,0.9);
 
 }
 
