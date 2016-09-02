@@ -17,7 +17,6 @@ var offset = 0,
 	rndSX = 0,rndSY = 0,
 	lastUpdate = 0,
 	IDLE_DELAY = 6000,
-	touches = [],
 	totalLines = 80000,
 	renderMode = 0,
 	colorTimeout,
@@ -27,7 +26,6 @@ function main(){
 	loadScene();
 
 	window.addEventListener("resize",onResize,false);
-	document.addEventListener("mousedown",onMouseDown,false);
 	onResize();
 
 	animate();
@@ -38,26 +36,6 @@ function onResize(e){
 	ch = window.innerHeight;
 }
 
-function normalize(px,py){
-	touches[0] = (px/cw - 0.5) * 3;
-	touches[1] = (py/ch - 0.5) * (-2);
-}
-
-function onMouseDown(e){
-	normalize(e.pageX,e.pageY);
-	document.addEventListener('mousemove',onMouseMove);
-	document.addEventListener('mouseup',onMouseUp);
-}
-
-function onMouseMove(e) {
-	normalize(e.pageX,e.pageY);
-}
-
-function onMouseUp(e) {
-	touches.length = 0;
-	document.removeEventListener( "mousemove", onMouseMove );
-	document.removeEventListener( "mouseup", onMouseUp );
-}
 
 function animate(){
 	requestAnimationFrame(animate);
@@ -65,33 +43,24 @@ function animate(){
 }
 
 function draw(){
-	var player,dx,dy,d,
-		tx,ty,bp,p,
-		i = 0,nt,j,
-		now = new Date().getTime();
-	nt = touches.length;
-
-	//animate color
-	cr = cr * 0.99 + tr * 0.01;
-	cg = cg * 0.99 + tg * 0.01;
-	cb = cb * 0.99 + tb * 0.01;
-	gl.uniform4f(colorLoc,cr,cg,cb,0.5);
-
-	//animate and attract particles
-	for(i = 0; i < numLines; i += 2){
+	var i, n = vertices.length, p, bp;
+	for(i = 0; i < numLines; i+=2){
 		bp = i * 3;
+		//copy old positions
 		vertices[bp] = vertices[bp + 3];
 		vertices[bp + 1] = vertices[bp + 4];
+
+		//inertia
 		velocities[bp] *= velocities[bp + 2];
 		velocities[bp + 1] *= velocities[bp + 2];
 
 		//horizontal
 		p = vertices[bp + 3];
 		p += velocities[bp];
-		if(p < -ratio){
+		if (p < -ratio){
 			p = -ratio;
 			velocities[bp] = Math.abs(velocities[bp]);
-		}else if(p > ratio){
+		} else if(p > ratio){
 			p = ratio;
 			velocities[bp] = -Math.abs(velocities[bp]);
 		}
@@ -100,31 +69,26 @@ function draw(){
 		//vertical
 		p = vertices[bp + 4];
 		p += velocities[bp + 1];
-		if(p < -1){
+		if (p < -1){
 			p = -1;
 			velocities[bp + 1] = Math.abs(velocities[bp + 1]);
-		}else if(p > 1){
+		} else if(p > 1){
 			p = 1;
-			velocities[bp + 1] = -Math.abs(velocities[bp + 1]);
+			velocities[bp + 1] = -Math.abs(velocities[bp + 1])
 		}
 		vertices[bp + 4] = p;
 
-		//attraction when touched
-		if(nt){
-			for(j=0; j<nt; j+=2){
-				dx = touches[j] - vertices[bp];
-				dy = touches[j + 1] - vertices[bp + 1];
+		if(touched){
+			var dx = touchX - vertices[bp],
+				dy = touchY - vertices[bp + 1],
 				d = Math.sqrt(dx * dx + dy * dy);
-
-				if(d<2){
-					if(d<0.03){
-						vertices[bp] = (Math.random() * 2 - 1) * ratio;
-						vertices[bp + 1] = Math.random() * 2 - 1;
-						vertices[bp + 3] = (vertices[bp + 3] + vertices[bp]) * 0.5;
-						vertices[bp + 4] = (vertices[bp + 4] + vertices[bp + 1]) * 0.5;
-						velocities[bp] = Math.random() * 0.4 - 0.2;
-						velocities[bp + 1] = Math.random() * 0.4 - 0.2;
-					}else{
+				if(d < 2){
+					if(d < 0.03){
+						vertices[bp + 3] = (Math.random() * 2 - 1) * ratio;
+						vertices[bp + 4] = Math.random() * 2 - 1;
+						velocities[bp] = 0;
+						velocities[bp + 1] = 0;
+					} else{
 						dx /= d;
 						dy /= d;
 						d = (2-d)/2;
@@ -133,13 +97,11 @@ function draw(){
 						velocities[bp + 1] += dy * d * 0.01;
 					}
 				}
-			}
 		}
 	}
-	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+	gl.lineWidth(2);
 	gl.bufferData(gl.ARRAY_BUFFER,vertices,gl.DYNAMIC_DRAW);
-
-	gl.lineWidth(1);
+	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 	gl.drawArrays(gl.LINES,0,numLines);
 	gl.flush();
 }
