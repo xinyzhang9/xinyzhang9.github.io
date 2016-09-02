@@ -44,6 +44,13 @@ function animate(){
 
 function draw(){
 	var i, n = vertices.length, p, bp;
+
+	// animate color
+	cr = cr * .99 + tr * .01;
+	cg = cg * .99 + tg * .01;
+	cb = cb * .99 + tb * .01;
+	gl.uniform4f( colorLoc, cr, cg, cb, .5 );
+	
 	for(i = 0; i < numLines; i+=2){
 		bp = i * 3;
 		//copy old positions
