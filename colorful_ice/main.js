@@ -18,7 +18,7 @@ var offset = 0,
 	lastUpdate = 0,
 	IDLE_DELAY = 6000,
 	touches = [],
-	totalLines = 180000,
+	totalLines = 80000,
 	renderMode = 0,
 	colorTimeout,
 	numLines = totalLines;
