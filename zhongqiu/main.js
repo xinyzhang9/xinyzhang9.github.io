@@ -14,7 +14,7 @@
 				if (progress >= str.length) {
 					clearInterval(timer);
 				}
-			}, 120);
+			}, 100);
 		});
 		return this;
 	};
