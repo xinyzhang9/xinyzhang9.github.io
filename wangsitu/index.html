@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>wangsitu</title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="game.js"></script>
+
+	<script>
+		$(document).ready(function(){
+			//create a stage
+			a = new playGround();
+			a.initialize();
+			var myInterval = setInterval(a.mainLoop, 500);
+			
+		})
+	</script>
+</head>
+<body>
+	<div class = "wrapper" >
+		<div id = "zhuge" >
+			<canvas id = "health1">
+			</canvas>
+			<div id = "photo1">
+				<img src="assets/img/zhuge.jpg" alt="" id = 'zgl'>
+			</div>
+			<div id = "controller1">
+				<p>诸葛亮(Zhuge Liang)</p>
+				<hr>
+				<p>Q - magic bloom</p>
+				<p>W - wind heal</p>
+				<p>E - wind punch</p>
+				<p>A - magic finger</p>
+				<p>S - dragon punch(SUP)</p>
+				<p>D - fire ball</p>
+
+			</div>
+		</div>
+		<div id = "stage">
+			<img src="assets/gif/preshow.gif" alt="" class = 'stage_gif' id = 'stage_gif'>
+			<button class = "btn-danger" onclick = "location.reload()">replay</button>
+		</div>
+		<div id = "wangsitu">
+			<canvas id = "health2">
+			</canvas>
+			<div id = "photo2">
+				<img src="assets/img/wangsitu.jpg" alt="" id = 'wst'>
+
+			</div>
+			<div id = "controller2">
+				<p>王司徒(Wang Lang)</p>
+				<hr>
+				<p>I - sweet kiss</p>
+				<p>O - shield heal</p>
+				<p>P - missle rise</p>
+				<p>J - missle dance</p>
+				<p>K - missle attack</p>
+				<p>L - missle punch(SUP)</p>
+			</div>
+		</div>
+	</div>
+
+	<div>
+		<div class = "space"></div>
+		<div class = "footer">
+			<hr>
+			<p>made by: <a href="https://github.com/xinyzhang9">阳哥</a>(xinyzhang9@gmail.com)</p>
+			<p>sound/gif/img edited by: <a href="https://github.com/xinyzhang9">阳哥</a> | <a href="http://weibo.com/jiroufada?is_all=1">女孩为何穿短裙</a></p>
+			<p>viedo source: <a href="https://www.youtube.com/watch?v=2_AboLDzMPo">Romance of the Three Kingdoms 1994</a></p>
+			<p><a href="https://github.com/xinyzhang9/wangsitu">see this on github</a></p>
+		</div>
+	</div>
+	
+</body>
+</html>
