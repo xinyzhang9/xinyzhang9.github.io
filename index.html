@@ -1,47 +1,201 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-	<meta charset='utf-8'/>
-	<title>index</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<style type="text/css">
-		h2{
-			text-align: center;
-		}
-		body{
-			padding: 20px;
-		}
-		a{
-			font-size: 18px;
-		}
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>xinyang's index</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/scrolling-nav.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<style>
+	#myphoto{
+		width: 200px;
+	}
+	.icon{
+		width: 30px;
+	}
 	</style>
-	<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-77776468-3', 'auto');
-  ga('send', 'pageview');
-
-</script>
 </head>
-<body>
-	<h2>Welcome to Xinyang's Animation Factory!</h2>
-	<hr />
-	<div>
-		<ul class = 'list-unstyled'>
-			<li><a href="sand.html">沙盒世界 | Play with sand</a></li>
-			<li><a href="c04/index.html">永恒之星 | Eternal star</a></li>
-			<li><a href="c07/index.html">旋转立方 | A cube</a></li>
-			<li><a href="c09/index.html">九宫之阵 | Nine cubes</a></li>
-			<li><a href="heart/index.html">陌上花开 | Blooming</a></li>
-			<li><a href="m06/index.html">精灵宝盒 | Pikachu box</a></li>
-			<li><a href="fire/index.html">火焰特效 | Fire effect</a></li>
-			<li><a href="dancing_ice/index.html">冰雪奇缘 | Dancing ice</a></li>
-			<li><a href="colorful_ice/index.html">指尖幻梦 | Finger magic</a></li>
-		</ul>
-		
-	</div>
-	
+
+<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top"><span class = 'glyphicon glyphicon-home'></span></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a class="page-scroll" href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#about">Animations</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#services">Games and Apps</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Intro Section -->
+    <section id="intro" class="intro-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Welcome to Xinyang's Website</h1>
+                    <img id = 'myphoto' src="myphoto.jpg">
+                    <p>Hello, My name is <code>Xinyang Zhang</code>. I am a full stack software developer. Ready to explore some interesting projects? Let's get started!</p>
+                    <a class="btn btn-default page-scroll" href="#about">Start</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Animations</h1>
+					<p>I used <code>WebGL</code> to make animations and particle effects inside browser. No add-on needed. Just have a try!</p>
+					<table class = 'table table-striped'>
+						<tr>
+							<td><a href="c07/index.html" target = 'blank'>旋转立方 | A cube</a></td>
+						</tr>
+						<tr>
+							<td><a href="c09/index.html" target = 'blank'>九宫之阵 | Nine cubes</a></td>
+						</tr>
+						<tr>
+							<td><a href="heart/index.html" target = 'blank'>陌上花开 | Blooming</a></td>
+						</tr>
+						<tr>
+							<td><a href="m06/index.html" target = 'blank'>精灵宝盒 | Pikachu box</a></td>
+						</tr>
+						<tr>
+							<td><a href="fire/index.html" target = 'blank'>火焰特效 | Fire effect</a></td>
+						</tr>
+						<tr>
+							<td><a href="dancing_ice/index.html" target = 'blank'>冰雪奇缘 | Dancing ice</a></td>
+						</tr>
+						<tr>
+							<td><a href="colorful_ice/index.html" target = 'blank'>指尖幻梦 | Finger magic</a></td>
+						</tr>
+					</table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Games and Apps</h1>
+                    <p>I had a dream to be a <code>game maker</code>. I did some experiments to realize my ideas into browsers. </p>
+					<table class = 'table table-striped'>
+						<tr>
+							<td><a href="http://52.35.104.4/" target = 'blank'>梦想球队 | Soccer Draft</a></td>
+						</tr>
+						<tr>
+							<td><a href="http://104.236.188.141/" target = 'blank'>社交网络 | Friend Circles</a></td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/xinyzhang9/socket_io" target = 'blank'>宝贝战争 | Pokemon Fighting</a></td>
+						</tr>
+						<tr>
+							<td><a href="http://138.68.5.105/" target = 'blank'>宝贝指南 | The Pokedex</a></td>
+						</tr>
+						<tr>
+							<td><a href="http://52.11.63.40/" target = 'blank'>电影口袋 | Movie Wishlist</a></td>
+						</tr>
+					</table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Contact Info</h1>
+                    <table class = 'table table-striped'>
+						<tr>
+							<td><img class = 'icon' src="gmail.png" id = 'email'><span id = 'email_info'> xinyzhang9@gmail.com</span></td>
+							
+						</tr>
+						<tr>
+							<td><a href = 'https://www.linkedin.com/in/xinyang-zhang-55380330' target = 'blank'><img class = 'icon' src="linkedin.png"></a></td>
+						</tr>
+						<tr>
+							<td><a href = 'https://github.com/xinyzhang9' target = 'blank'><img class = 'icon' src="github.png"></a></td>
+						</tr>
+						<tr>
+							<td><a href = 'http://dev.xinyangzhang.com/' target = 'blank'><img class = 'icon' src="blogger.png"></a></td>
+						</tr>
+						<tr>
+							<td></td>
+						</tr>
+					</table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Scrolling Nav JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/scrolling-nav.js"></script>
+    <script type="text/javascript">
+    $('#email_info').hide();
+    $('#email').click(function(){
+    	$('#email_info').toggle();
+    })
+    </script>
+
 </body>
+
 </html>
