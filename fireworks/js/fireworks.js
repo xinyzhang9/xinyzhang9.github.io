@@ -37,8 +37,8 @@ var Fireworks = (function(){
 	}
 
 	function createFirework(){
-    var audio = new Audio('sounds/fireworks.mp3');
-    audio.play()
+	    var audio = new Audio('sounds/fireworks.mp3');
+	    audio.play()
 		createParticle();
 	}
 
