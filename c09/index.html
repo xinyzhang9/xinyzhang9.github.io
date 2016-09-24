@@ -2,16 +2,24 @@
 <head>
 	<title>scene-graph</title>
 	<style type="text/css">
-		body{
-			text-align: center;
-		}
+html, body {
+				height: 100%;
+				text-align: center;
+			}
+body {
+	padding: 0px;
+	margin: 0px;
+	overflow:  hidden;
+	background-color: black;
+	color: white;
+}
 	</style>
 </head>
 <body>
 	<canvas id = 'c' width = '900' height = '900'></canvas>
-	<script type="text/javascript" src = '../webgl-utils.js'></script>
-	<script type="text/javascript" src = '../mesh.js'></script>
-	<script type="text/javascript" src = '../vector-math.js'></script>
+	<script type="text/javascript" src = 'webgl-utils.js'></script>
+	<script type="text/javascript" src = 'mesh.js'></script>
+	<script type="text/javascript" src = 'vector-math.js'></script>
 	<script type="text/javascript">
 		var c = document.getElementById('c');
 		var gl = c.getContext('webgl');
