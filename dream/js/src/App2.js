@@ -17,12 +17,15 @@ var App = function() {
         update: undefined,  // defined later in the file
     };
 
-    _params.drawMat.uniforms.uColor1.value.x = 0.88;
-    _params.drawMat.uniforms.uColor1.value.y = 0.3;
+    _params.drawMat.uniforms.uColor1.value.x = 0.93;
+    _params.drawMat.uniforms.uColor1.value.y = 0.2;
     _params.drawMat.uniforms.uColor1.value.z = 0.08;
     _params.drawMat.uniforms.uColor2.value.x = 0.1;
     _params.drawMat.uniforms.uColor2.value.y = 0.9;
     _params.drawMat.uniforms.uColor2.value.z = 0.3;
+
+    _params.drawMat.uniforms.uPointSize.value = 2.0;
+
 
     _tourMode = true;
 
@@ -340,7 +343,7 @@ var App = function() {
 
 
     // RUN PROGRAM
-    // switchColor();
+    switchColor();
     _loadMeshes();
     _init();
     _initUI();
