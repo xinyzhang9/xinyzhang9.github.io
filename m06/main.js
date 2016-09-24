@@ -20,6 +20,7 @@ function start(){
 	canvas = document.getElementById('c');
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
+
 	initWebGL();
 
 	if (gl){
@@ -40,6 +41,7 @@ function initWebGL(){
 	gl = null;
 	try{
 		gl = canvas.getContext('webgl');
+		// gl.viewport(0,0,canvas.width,canvas.height);
 	}
 	catch(e){
 
