@@ -45,10 +45,17 @@
 
     </script>
     <script id="modelFragmentShader" type="text/something-not-javascript">
-    precision mediump float;
-    void main() {
-      gl_FragColor = vec4(0.88, 0.2, 0.2, 1.0);
-    }
+    // precision mediump float;
+    // void main() {
+    //   gl_FragColor = vec4(0.88, 0.2, 0.2, 1.0);
+    // }
+    #ifdef GL_ES
+                precision highp float;
+            #endif
+            uniform vec4 color;
+            void main(void){
+                gl_FragColor = color;
+            }
     </script>
     <script type="text/javascript">
         function $$(x) {

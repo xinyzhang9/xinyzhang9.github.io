@@ -23,7 +23,7 @@ var App = function() {
     _params.drawMat.uniforms.uColor2.value.x = 0.1;
     _params.drawMat.uniforms.uColor2.value.y = 0.9;
     _params.drawMat.uniforms.uColor2.value.z = 0.3;
-
+    
     _params.drawMat.uniforms.uPointSize.value = 2.0;
 
 

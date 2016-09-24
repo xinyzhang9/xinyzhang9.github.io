@@ -8,6 +8,38 @@ tdl.require('tdl.programs');
 tdl.require('tdl.textures');
 tdl.require('tdl.webgl');
 
+var tr=0,tg=0,tb=0,
+    colorTimeout,
+    cr = 0,cg = 0,cb = 0;
+
+function switchColor(){
+  var a = 0.5,
+    c1 = 0.3 + Math.random() * 0.2,
+    c2 = Math.random() * 0.06 + 0.01,
+    c3 = Math.random() * 0.06 + 0.02;
+  switch(Math.floor(Math.random()*3)){
+    case 0:
+      tr = c1;
+      tg = c2;
+      tb = c3;
+      break;
+    case 1:
+      tr = c2;
+      tg = c1;
+      tb = c3;
+      break;
+    case 2:
+      tr = c3;
+      tg = c2;
+      tb = c1;
+      break;
+  }
+  if(colorTimeout){
+    clearTimeout(colorTimeout);
+  }
+  colorTimeout = setTimeout(switchColor,500+Math.random()*2000);
+}
+
 function setupLogo() {
   var program = tdl.programs.loadProgramFromScriptTags(
       'modelVertexShader',
@@ -72,11 +104,20 @@ function initializeLogo(canvas) {
   var modelConst = {
   };
   var modelPer = {
-    worldViewProjection: worldViewProjection
+    worldViewProjection: worldViewProjection,
+    color: new Float32Array([0.4,0.01,0.08,0.5])
   };
 
   var then = (new Date()).getTime() * 0.001;
   function render() {
+    cr = cr * .99 + tr * .01;
+    cg = cg * .99 + tg * .01;
+    cb = cb * .99 + tb * .01;
+    modelPer.color[0] = cr;
+    modelPer.color[1] = cg;
+    modelPer.color[2] = cb;
+    // console.log(modelPer.color[0])
+
     tdl.webgl.requestAnimationFrame(render, canvas);
     var now = (new Date()).getTime() * 0.001;
     var elapsedTime = now - then;
@@ -91,7 +132,7 @@ function initializeLogo(canvas) {
     gl.depthMask(true);
     gl.clearColor(0,0,0,0);
     gl.clearDepth(1);
-    gl.lineWidth(2);
+    gl.lineWidth(3);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT | gl.STENCIL_BUFFER_BIT);
 
     gl.enable(gl.CULL_FACE);
@@ -118,5 +159,6 @@ function initializeLogo(canvas) {
     model.draw(modelPer);
   }
   render();
+  switchColor();
 }
 
