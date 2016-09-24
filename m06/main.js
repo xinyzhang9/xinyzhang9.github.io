@@ -41,7 +41,7 @@ function initWebGL(){
 	gl = null;
 	try{
 		gl = canvas.getContext('webgl');
-		// gl.viewport(0,0,canvas.width,canvas.height);
+		gl.viewport(0,0,canvas.width,canvas.height);
 	}
 	catch(e){
 
