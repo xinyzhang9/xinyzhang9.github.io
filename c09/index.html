@@ -16,13 +16,19 @@ body {
 	</style>
 </head>
 <body>
-	<canvas id = 'c' width = '900' height = '900'></canvas>
+	<canvas id = 'c'></canvas>
 	<script type="text/javascript" src = 'webgl-utils.js'></script>
 	<script type="text/javascript" src = 'mesh.js'></script>
 	<script type="text/javascript" src = 'vector-math.js'></script>
 	<script type="text/javascript">
 		var c = document.getElementById('c');
+		var cw = window.innerHeight;
+		var ch = window.innerHeight;
+		c.width = cw;
+		c.height = ch;
+
 		var gl = c.getContext('webgl');
+		gl.viewport(0,0,c.width,c.height);
 		gl.enable(gl.DEPTH_TEST);
 		gl.clearColor(0,0,0,1);
 
