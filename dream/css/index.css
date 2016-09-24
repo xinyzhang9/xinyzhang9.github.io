@@ -16,6 +16,19 @@ div.dg{
   visibility: hidden;
 }
 
+#notice {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  padding: 5px;
+  color: white;
+  text-align: center;
+  font-family: Helvetica;
+  font-size: 20px;
+  z-index:  5;
+}
+
 #webgl-container {
   overflow: hidden;
   position: absolute;
