@@ -75,8 +75,8 @@ var App = function() {
 
     var switchColor = function(){
         c1 = 0.8 + Math.random() * 0.2;
-        c2 = 0.5+Math.random() * 0.1;
-        c3 = 0.2+Math.random() * 0.1;
+        c2 = 0.2+Math.random() * 0.2;
+        c3 = 0.2+Math.random() * 0.2;
         switch(Math.floor(Math.random()*3)){
             case 0:
                 tr = c1;
@@ -95,14 +95,14 @@ var App = function() {
                 break;
         }
 
-        _params.drawMat.uniforms.uColor2.value.x = _params.drawMat.uniforms.uColor2.value.x * .99 + tr*.01;
-        _params.drawMat.uniforms.uColor2.value.y = _params.drawMat.uniforms.uColor2.value.y * .99 + tg*.01;
-        _params.drawMat.uniforms.uColor2.value.z = _params.drawMat.uniforms.uColor2.value.z * .99 + tb*.01;
+        _params.drawMat.uniforms.uColor2.value.x = _params.drawMat.uniforms.uColor2.value.x * .9 + tr*.1;
+        _params.drawMat.uniforms.uColor2.value.y = _params.drawMat.uniforms.uColor2.value.y * .9 + tg*.1;
+        _params.drawMat.uniforms.uColor2.value.z = _params.drawMat.uniforms.uColor2.value.z * .9 + tb*.1;
         console.log(_params.drawMat.uniforms.uColor2.value.x,_params.drawMat.uniforms.uColor2.value.y,_params.drawMat.uniforms.uColor2.value.z);
         if(colorTimeout){
             clearTimeout(colorTimeout);
         }
-        colorTimeout = setTimeout(switchColor,100+Math.random()*500);
+        colorTimeout = setTimeout(switchColor,500+Math.random()*500);
     };
 
     var _setSimMode = function(name) {
