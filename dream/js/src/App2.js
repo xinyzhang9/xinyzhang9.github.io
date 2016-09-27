@@ -101,7 +101,7 @@ var App = function() {
         _params.drawMat.uniforms.uColor2.value.x = _params.drawMat.uniforms.uColor2.value.x * .9 + tr*.1;
         _params.drawMat.uniforms.uColor2.value.y = _params.drawMat.uniforms.uColor2.value.y * .9 + tg*.1;
         _params.drawMat.uniforms.uColor2.value.z = _params.drawMat.uniforms.uColor2.value.z * .9 + tb*.1;
-        console.log(_params.drawMat.uniforms.uColor2.value.x,_params.drawMat.uniforms.uColor2.value.y,_params.drawMat.uniforms.uColor2.value.z);
+        // console.log(_params.drawMat.uniforms.uColor2.value.x,_params.drawMat.uniforms.uColor2.value.y,_params.drawMat.uniforms.uColor2.value.z);
         if(colorTimeout){
             clearTimeout(colorTimeout);
         }
