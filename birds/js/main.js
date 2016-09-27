@@ -12,7 +12,7 @@ var SCREEN_WIDTH = window.innerWidth,
 	boid,boids,
 	stats;
 
-var maxBoids = 400;
+var maxBoids = 200;
 
 init();
 animate();
@@ -45,7 +45,7 @@ function init(){
 	renderer.setPixelRatio(window.devicePixelRatio);
 	renderer.setSize(SCREEN_WIDTH,SCREEN_HEIGHT);
 	document.addEventListener('mousemove',onDocumentMouseMove,false);
-	document.addEventListener('touchmove',onDocumentMouseMove,false);
+	document.addEventListener('touchend',onDocumentMouseMove,false);
 	document.body.appendChild(renderer.domElement);
 
 	stats = new Stats();
