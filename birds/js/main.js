@@ -90,11 +90,20 @@ function render(){
 	if(touched){
 		var vector = new THREE.Vector3(pageX - SCREEN_WIDTH_HALF,-pageY+SCREEN_HEIGHT_HALF,0);
 		// document.getElementById('notice').innerHTML = pageX+' , '+pageY+' , '+SCREEN_WIDTH_HALF + ' , '+SCREEN_HEIGHT_HALF;
-		for(var i = 0; i < boids.length; i++){
-			boid = boids[i];
-			vector.z = boid.position.z;
-			boid.repulse(vector);
+		if(isMobile){
+			for(var i = 0; i < boids.length; i++){
+				boid = boids[i];
+				vector.z = boid.position.z;
+				boid.repulse_mobile(vector);
+			}
+		}else{
+			for(var i = 0; i < boids.length; i++){
+				boid = boids[i];
+				vector.z = boid.position.z;
+				boid.repulse(vector);
+			}
 		}
+		
 	}
 	for(var i = 0; i < birds.length; i++){
 		boid = boids[i];

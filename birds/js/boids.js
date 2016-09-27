@@ -108,7 +108,17 @@ var Boid = function(){
 			if(distance < 150){
 				var steer = new THREE.Vector3();
 				steer.subVectors(this.position,target);
-				steer.multiplyScalar(0.5/distance);
+				steer.multiplyScalar(2/distance);
+				_acceleration.add(steer);
+			}
+		};
+		//repulse for mobile
+		this.repulse_mobile = function(target){
+			var distance = this.position.distanceTo(target);
+			if(distance < 150){
+				var steer = new THREE.Vector3();
+				steer.subVectors(this.position,target);
+				steer.multiplyScalar(4/distance);
 				_acceleration.add(steer);
 			}
 		};
