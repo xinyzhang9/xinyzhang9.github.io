@@ -63,6 +63,7 @@ function onWindowResize(){
 
 function onDocumentMouseMove(e){
 	var vector = new THREE.Vector3(e.pageX - SCREEN_WIDTH_HALF,-e.pageY+SCREEN_HEIGHT_HALF,0);
+	document.getElementById('notice').innerHTML = e.pageX+' , '+e.pageY;
 	for(var i = 0; i < boids.length; i++){
 		boid = boids[i];
 		vector.z = boid.position.z;
