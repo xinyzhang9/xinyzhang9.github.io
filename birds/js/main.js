@@ -45,7 +45,7 @@ function init(){
 	renderer.setPixelRatio(window.devicePixelRatio);
 	renderer.setSize(SCREEN_WIDTH,SCREEN_HEIGHT);
 	document.addEventListener('mousemove',onDocumentMouseMove,false);
-	document.addEventListener('touchend',onDocumentMouseMove,false);
+	document.addEventListener('touchstart',onDocumentMouseMove,false);
 	document.body.appendChild(renderer.domElement);
 
 	stats = new Stats();
