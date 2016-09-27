@@ -12,7 +12,7 @@ var SCREEN_WIDTH = window.innerWidth,
 	boid,boids,
 	stats;
 
-var maxBoids = 200;
+var maxBoids = 100;
 
 init();
 animate();
