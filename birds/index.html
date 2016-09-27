@@ -12,10 +12,27 @@
 			margin: 0px;
 			overflow: hidden;
 		}
+
+		#notice {
+			position: absolute;
+			left: 0px;
+			right: 0px;
+			bottom: 0px;
+			padding: 5px;
+			color: white;
+			text-align: center;
+			font-family: Helvetica;
+			font-size: 16px;
+			z-index:  1;
+		}
 	</style>
 </head>
 <body>
 	<div id = "container"></div>
+	<div id = 'notice'>
+		<p>move mouse or touch screen to disturb the birds</p>
+		<p>移动鼠标或滑动触屏可以惊扰飞鸟</p>
+	</div>
 	<script type="text/javascript" src = 'js/three.min.js'></script>
 	<script type="text/javascript" src = 'js/projector.js'></script>
 	<script type="text/javascript" src = 'js/canvasRenderer.js'></script>

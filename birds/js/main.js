@@ -41,10 +41,11 @@ function init(){
 		scene.add(bird);
 	}
 	renderer = new THREE.CanvasRenderer();
-	renderer.setClearColor(0xffffff);
+	renderer.setClearColor(0x000000);
 	renderer.setPixelRatio(window.devicePixelRatio);
 	renderer.setSize(SCREEN_WIDTH,SCREEN_HEIGHT);
 	document.addEventListener('mousemove',onDocumentMouseMove,false);
+	document.addEventListener('touchmove',onDocumentMouseMove,false);
 	document.body.appendChild(renderer.domElement);
 
 	stats = new Stats();
@@ -85,9 +86,9 @@ function render(){
 		color = bird.material.color;
 		// color.r = color.g = color.b = (500-bird.position.z)/1000;
 		// console.log(bird.position.z);
-		color.r = 0.8;
-		color.g = 0.2;
-		color.b = 0.1;
+		color.r = 0.5+bird.position.z/400;
+		color.g = 0.5+bird.position.x/400;
+		color.b = 0.5+bird.position.y/400;
 		bird.rotation.y = Math.atan2(-boid.velocity.z,boid.velocity.x);
 		bird.rotation.z = Math.asin(boid.velocity.y/boid.velocity.length());
 		bird.phase = (bird.phase + (Math.max(0,bird.rotation.z)+0.1)) % 62.83;
