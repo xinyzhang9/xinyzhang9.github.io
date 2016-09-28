@@ -389,13 +389,14 @@
 			var camera, scene, renderer;
 			var controls;
 			var objects = [];
-			var targets = { table: [],table2:[],table3:[] };
+			var targets = { table: [],table2:[],table3:[],helix:[] };
 
 			var first_ids = ['380','260','555','370','185','255','360','20','280'];
 			var second_ids = ['345','570','455','295','205','445','210','155','335'];
 			var third_ids = ['530','375','100','545','390','395','560','305','315','470','310','540','550','120','535'];
 
 			var count = 0;
+			var timer;
 			function createSpecialTable(){
 
 				for ( var i = 0; i < special_table.length; i += 5 ) {
@@ -494,6 +495,21 @@
 					}
 					targets.table3.push( object );
 				}
+				// helix
+				var vector = new THREE.Vector3();
+				console.log(objects.length);
+				for ( var i = 0, l = objects.length; i < l; i ++ ) {
+					var phi = i * 0.175 + Math.PI;
+					var object = new THREE.Object3D();
+					object.position.x = 900 * Math.sin( phi );
+					object.position.y = - ( i * 8 ) + 450;
+					object.position.z = 900 * Math.cos( phi );
+					vector.x = object.position.x * 2;
+					vector.y = object.position.y;
+					vector.z = object.position.z * 2;
+					object.lookAt( vector );
+					targets.helix.push( object );
+				}
 
 				//
 				renderer = new THREE.CSS3DRenderer();
@@ -528,6 +544,23 @@
 						count ++;
 					}else if(count == 3){
 						createSpecialTable();
+						var vector = new THREE.Vector3();
+						for ( var i = 0, l = 5; i < l; i ++ ) {
+							var phi = i * 0.175 + Math.PI;
+							var object = new THREE.Object3D();
+							object.position.x = 900 * Math.sin( phi );
+							object.position.y = - ( i * 8 ) + 450;
+							object.position.z = 900 * Math.cos( phi );
+							vector.x = object.position.x * 2;
+							vector.y = object.position.y;
+							vector.z = object.position.z * 2;
+							object.lookAt( vector );
+							targets.helix.push( object );
+						}
+						count++;
+					}else if(count == 4){
+						transform(targets.helix,2000);
+						render1();
 						count++;
 					}else{
 						location.reload();
@@ -552,10 +585,18 @@
 						.easing( TWEEN.Easing.Exponential.InOut )
 						.start();
 				}
-				new TWEEN.Tween( this )
+				if(count !== 4){
+					new TWEEN.Tween( this )
 					.to( {}, duration * 2 )
 					.onUpdate( render )
 					.start();
+				}else{
+					new TWEEN.Tween( this )
+					.to( {}, duration * 50 )
+					.onUpdate( render1 )
+					.start();
+				}
+				
 			}
 			function onWindowResize() {
 				camera.aspect = window.innerWidth / window.innerHeight;
@@ -569,6 +610,13 @@
 				controls.update();
 			}
 			function render() {
+				renderer.render( scene, camera );
+			}
+			function render1(){
+				timer = Date.now()*0.0005;
+				camera.position.x -= Math.cos(timer)*200;
+				camera.position.z += Math.sin(timer)*200;
+				camera.lookAt(scene.position);
 				renderer.render( scene, camera );
 			}
 		</script>
