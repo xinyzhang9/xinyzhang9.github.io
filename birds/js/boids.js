@@ -131,7 +131,7 @@ var Boid = function(){
 		this.alignment = function(boids){
 			var boid,velSum = new THREE.Vector3(),
 				count = 0;
-			for(var i = 0, il = boids.length; i < il; i++){
+			for(var i = 0; i < boids.length; i++){
 				if(Math.random()>0.6){
 					continue;
 				}
@@ -156,7 +156,7 @@ var Boid = function(){
 				posSum = new THREE.Vector3(),
 				steer = new THREE.Vector3(),
 				count = 0;
-			for(var i = 0, il = boids.length; i < il; i++){
+			for(var i = 0; i < boids.length; i++){
 				if(Math.random() > 0.6){
 					continue;
 				}
@@ -181,7 +181,7 @@ var Boid = function(){
 			var boid,distance,
 				posSum = new THREE.Vector3(),
 				repulse = new THREE.Vector3();
-			for(var i = 0, il = boids.length; i < il; i++){
+			for(var i = 0; i < boids.length; i++){
 				if(Math.random() > 0.6){
 					continue;
 				}
