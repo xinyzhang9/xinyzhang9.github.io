@@ -458,7 +458,6 @@
 					element.appendChild( symbol );
 					var details = document.createElement( 'div' );
 					details.className = 'details';
-					// details.innerHTML = table[ i + 1 ] + '<br>' + table[ i + 2 ];
 					details.innerHTML = table[ i + 1 ] + '<br>' + table[ i + 2 ];
 					element.appendChild( details );
 					var object = new THREE.CSS3DObject( element );
@@ -479,9 +478,6 @@
 					var object = new THREE.Object3D();
 					object.position.x = ( table2[ i + 3 ] * 140 ) - 1330;
 					object.position.y = - ( table2[ i + 4 ] * 180 ) + 990;
-					if(i === 0){
-						object.color = 'red';
-					}
 					targets.table2.push( object );
 				}
 				//table3
@@ -490,9 +486,6 @@
 					var object = new THREE.Object3D();
 					object.position.x = ( table3[ i + 3 ] * 140 ) - 1330;
 					object.position.y = - ( table3[ i + 4 ] * 180 ) + 990;
-					if(i === 0){
-						object.color = 'red';
-					}
 					targets.table3.push( object );
 				}
 				// helix
@@ -592,7 +585,7 @@
 					.start();
 				}else{
 					new TWEEN.Tween( this )
-					.to( {}, duration * 50 )
+					.to( {}, duration * 1314 )
 					.onUpdate( render1 )
 					.start();
 				}
