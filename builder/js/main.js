@@ -210,7 +210,7 @@ function loadProgress(){
 		document.getElementById('connectivity').innerHTML = build_connect(voxel);
 			
 	}
-	document.getElementById('maxHeight').innerHTML = maxHeight;
+	document.getElementById('maxHeight').innerHTML = calcHeight();
 	document.getElementById('numCubes').innerHTML = objects.length-1;
 
 	// render();
