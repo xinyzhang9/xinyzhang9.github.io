@@ -263,8 +263,7 @@ class Game{
                 gameInstance.resume();
             }
 
-        }
-        if(e.keyCode === 83){
+        }else if(e.keyCode === 83){
             this.gameInfo.tutorialLabel.text = '';
             //generate bullet1
             if(this.hero.shootType > 0){
@@ -282,8 +281,7 @@ class Game{
                     Laya.SoundManager.playSound('res/sound/bullet.mp3');
                 }
             }
-        }
-        if(e.keyCode === 68){
+        }else if(e.keyCode === 68){
             this.gameInfo.tutorialLabel.text = '';
             //generate bullet3
             if(this.hero.shootType > 0 && this.hero.mp === 10){
@@ -303,8 +301,7 @@ class Game{
                     Laya.SoundManager.playSound('res/sound/bullet.mp3');
                 }
             }
-        }
-        if(e.keyCode === 65){
+        } else if(e.keyCode === 65){
             this.gameInfo.tutorialLabel.text = '';
             //generate bullet4
             if(this.hero.shootType > 0 && this.hero.mp >=5){
