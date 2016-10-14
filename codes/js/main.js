@@ -91,6 +91,8 @@ Array.prototype.clone = function() {
 			init();
 			animate();
 			function init() {
+				var audio = new Audio('loveletter.mp3');
+				audio.play();
 				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
 				camera.position.z = 3000;
 				scene = new THREE.Scene();
