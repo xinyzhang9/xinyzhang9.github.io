@@ -214,8 +214,6 @@ Array.prototype.clone = function() {
 				var button = document.getElementById('solve');
 				button.addEventListener('click',function( event ){
 					if(count == 0){
-						var audio = document.getElementById('bgm');
-						audio.play();
 						poem.slice(count*7,count*7+7).forEach(function(id){
 							document.getElementById(id).style.backgroundColor = 'rgba(0,51,255,' + ( Math.random() * 0.25 + 0.7 ) + ')';
 						})
