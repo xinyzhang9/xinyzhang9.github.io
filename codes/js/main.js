@@ -270,7 +270,7 @@ Array.prototype.clone = function() {
 						transform(targets.helix,2000);
 						render1();
 						count++;
-						document.getElementById('notice').innerHTML = '舵主，这首诗只为你而作。       -- 阳哥'
+						document.getElementById('notice').innerHTML = '舵主，等着你的答案哦。       -- 阳哥'
 					}
 					else{
 						location.reload();
