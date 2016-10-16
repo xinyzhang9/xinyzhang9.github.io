@@ -96,3 +96,14 @@ html, body {
 				font-size: 18px;
 				z-index:  5;
 			}
+			#loading{
+				position: absolute;
+				left: 0px;
+				right: 0px;
+				top: 60px;
+				padding: 5px;
+				color: white;
+				text-align: center;
+				font-size: 18px;
+				z-index:  5;
+			}

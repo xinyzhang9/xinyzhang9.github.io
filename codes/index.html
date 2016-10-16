@@ -14,7 +14,7 @@
 	<body>
 
 		<audio id = 'bgm' src = 'loveletter.mp3' autoplay loop></audio>
-
+		<div id = 'loading'>Loading...</div>
 		<div id="container"></div>
 
 		<div id="menu">
@@ -22,7 +22,11 @@
 		</div>
 		<div id = 'notice'></div>
 		<script type="text/javascript">
-			window.onload = main;
+		window.onload = function(){ 
+			document.getElementById("loading").style.display = "none" ;
+			main();
+		}  
+			// window.onload = main;
 		</script>
 		
 	</body>
