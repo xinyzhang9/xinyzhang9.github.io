@@ -87,6 +87,8 @@ html, body {
 			}
 			#notice{
 				position: absolute;
+				margin: 0 auto;
+				width: 60%;
 				left: 0px;
 				right: 0px;
 				bottom: 60px;

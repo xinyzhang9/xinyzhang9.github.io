@@ -271,7 +271,8 @@ function main(){
 				transform(targets.helix,2000);
 				render1();
 				count++;
-				document.getElementById('notice').innerHTML = '舵主，等着你的答案哦。       -- 阳哥'
+				document.getElementById('notice').innerHTML = '<p>舵主，当你读到这里，也许是我平生最紧张的时候了吧。从开始的怦然心动，到后来的念念不忘，我的世界早已离不开你。想让你每天都开心，像童话里的公主一样。记得你说小时候为爸爸挡酒，我听了心疼了好久。以后我不会让你受到一点伤害的。我会为你变得更好，给你做最好吃的菜肴，写最浪漫的诗句。陪你听花间流水，陪你看长河落日。人生苦短，有你相伴一定不负此生。所以...和我在一起好不:)</p><p>By 花了好久才鼓起勇气的阳哥</p>';
+				$("#notice").typewriter();
 			}
 			else{
 				location.reload();
