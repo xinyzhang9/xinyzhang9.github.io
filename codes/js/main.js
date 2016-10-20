@@ -263,11 +263,16 @@ function main(){
 				transform( targets.table9, 2000 );
 				count ++;
 			}else if(count == 8){
+				document.getElementById('notice').innerHTML = '<p>其实，我想对你说的是...</p>';
+				$("#notice").typewriter();
+				count ++;
+			}else if(count == 9){
+				document.getElementById('notice').innerHTML = '';
 				special.forEach(function(id){
 					document.getElementById(id).style.backgroundColor = 'rgba(255, 104, 104,' + ( Math.random() * 0.25 + 0.7 ) + ')';
 				})
 				count ++;
-			}else if(count == 9){
+			}else if(count == 10){
 				transform(targets.helix,2000);
 				render1();
 				count++;
@@ -297,7 +302,7 @@ function main(){
 				.easing( TWEEN.Easing.Exponential.InOut )
 				.start();
 		}
-		if(count !== 9){
+		if(count !== 10){
 			new TWEEN.Tween( this )
 			.to( {}, duration * 2 )
 			.onUpdate( render )
