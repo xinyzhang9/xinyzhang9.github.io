@@ -7,3 +7,6 @@ WebGL, JavaScript
 
 ## Live
 [Live Demo](https://xinyzhang9.github.io/colorful_ice/index.html)
+
+## Screenshot
+![alt](https://i.stack.imgur.com/03u7e.png)
